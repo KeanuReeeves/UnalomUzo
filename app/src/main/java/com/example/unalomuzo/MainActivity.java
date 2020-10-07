@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout clickme;
     private int szamlalo;
-
+    private TextView szamlaloText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,16 +22,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 szamlalo++;
+                szamlaloText.setText("Szamlalo: "+szamlalo);
                 AlertDialog.Builder alert= new AlertDialog.Builder(MainActivity.this);
-                if (szamlalo==10)
-                {
+               if (szamlalo==10)
+               {
+                   alert.setTitle("Message");
+                   alert.setMessage("Még 90 click és öné lehet az új Iphone X");
+                   AlertDialog alertShow=alert.create();
+                   alertShow.show();
+               }
+               else if (szamlalo==50)
+               {
                     alert.setTitle("Message");
-                    alert.setMessage("Már csak 90 Click és tiéd az új Iphone X");
-                }
-                else if(szamlalo==50)
-                {
-
-                }
+                    alert.setMessage("Még 50 click és öné lehet az új Iphone X");
+                    AlertDialog alertShow=alert.create();
+                    alertShow.show();
+               }
+               else if (szamlalo==100)
+               {
+                   alert.setTitle("Message");
+                   alert.setMessage("Sajnáljuk most nem nyert, de ne adja fel próbálja tovább!!");
+                   AlertDialog alertShow=alert.create();
+                   alertShow.show();
+               }
             }
         });
     }
@@ -38,5 +52,6 @@ public class MainActivity extends AppCompatActivity {
     {
         clickme=findViewById(R.id.main_layout);
         szamlalo=0;
+        szamlaloText=findViewById(R.id.szamlalo);
     }
 }
